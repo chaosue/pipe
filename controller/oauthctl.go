@@ -98,6 +98,11 @@ func githubCallbackAction(c *gin.Context) {
 	userName := githubUser["userName"].(string)
 	user := service.User.GetUserByGitHubId(githubId)
 	if nil == user {
+		if model.Conf.DisableAutoImportGithubUser {
+			logger.Warnf("github user registering has be disabled, account: %v", userName)
+			c.Status(http.StatusForbidden)
+			return
+		}
 		if !service.Init.Inited() {
 			user = &model.User{
 				Name:      userName,
