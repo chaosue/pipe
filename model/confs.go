@@ -70,6 +70,7 @@ type Configuration struct {
 	Port                  string // listen port
 	AxiosBaseURL          string // axio base URL
 	MockServer            string // mock server
+	DisableAutoImportGithubUser bool // disable importing authorized github users.
 }
 
 // LoadConf loads the configurations. Command-line arguments will override configuration file.
