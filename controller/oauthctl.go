@@ -100,7 +100,6 @@ func githubCallbackAction(c *gin.Context) {
 	if nil == user {
 		if model.Conf.DisableAutoImportGithubUser {
 			logger.Warnf("github user registering has be disabled, account: %v", userName)
-			c.Status(http.StatusForbidden)
 			c.Redirect(http.StatusFound, "/registeroff.html")
 			return
 		}
